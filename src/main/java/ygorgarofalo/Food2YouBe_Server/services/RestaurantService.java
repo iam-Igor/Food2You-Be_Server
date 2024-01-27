@@ -62,6 +62,7 @@ public class RestaurantService {
     }
 
 
+    // patch
     @Transactional
     public Restaurant addProducts(ProductListPayloadDTO payload) {
         Restaurant found = this.findById(payload.restaurantId());

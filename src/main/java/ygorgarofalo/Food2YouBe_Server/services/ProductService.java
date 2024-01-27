@@ -10,8 +10,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ygorgarofalo.Food2YouBe_Server.entities.Product;
+import ygorgarofalo.Food2YouBe_Server.entities.Restaurant;
 import ygorgarofalo.Food2YouBe_Server.exceptions.NotFoundException;
+import ygorgarofalo.Food2YouBe_Server.payloads.ProductpayloadDTO;
 import ygorgarofalo.Food2YouBe_Server.repositories.ProductRepo;
+import ygorgarofalo.Food2YouBe_Server.repositories.RestaurantRepo;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,15 +24,31 @@ public class ProductService {
 
     @Autowired
     ProductRepo productRepo;
-
+    @Autowired
+    RestaurantRepo restaurantRepo;
     @Autowired
     private Cloudinary cloudinary;
-
 
     public Page<Product> getProducts(int page, int size, String orderBy) {
         if (size >= 100) size = 100;
         Pageable pageable = PageRequest.of(page, size, Sort.by(orderBy));
         return productRepo.findAll(pageable);
+    }
+
+
+    public Product saveProduct(ProductpayloadDTO body) {
+        Product newProduct = new Product();
+        Restaurant found = restaurantRepo.findById(body.restaurantId()).orElseThrow(() -> new NotFoundException(body.restaurantId()));
+
+        newProduct.setName(body.name());
+        newProduct.setCalories(body.calories());
+        newProduct.setDescription(body.description());
+        newProduct.setIngredients(body.ingredients());
+        newProduct.setPrice(body.price());
+        newProduct.setRestaurant(found);
+
+        return productRepo.save(newProduct);
+
     }
 
 
