@@ -52,12 +52,13 @@ public class UserService {
     }
 
 
-    public String uploadAvatarImage(MultipartFile file, long user_id) throws IOException {
-        User found = this.findById(user_id);
+    // patch
+    public String uploadAvatarImage(MultipartFile file, User user) throws IOException {
+
         String url = (String) cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");
 
-        found.setAvatarUrl(url);
-        userRepo.save(found);
+        user.setAvatarUrl(url);
+        userRepo.save(user);
         return url;
     }
 }

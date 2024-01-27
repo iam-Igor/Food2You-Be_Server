@@ -1,6 +1,7 @@
 package ygorgarofalo.Food2YouBe_Server.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonIgnoreProperties({"password", "orderList", "accountNonLocked", "credentialsNonExpired"})
 public class User implements UserDetails {
 
 

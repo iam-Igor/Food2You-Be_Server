@@ -50,6 +50,7 @@ public class AuthService {
         newUser.setEmail(payload.email());
         newUser.setUsername(payload.username());
         newUser.setPassword(bcrypt.encode(payload.password()));
+        newUser.setAddress(payload.address());
         if (userRepo.existsByEmail(payload.email())) {
             throw new BadRequestException("L'email " + payload.email() + " è gia presente nel sistema.");
         } else if (userRepo.existsByUsername(payload.username())) {
