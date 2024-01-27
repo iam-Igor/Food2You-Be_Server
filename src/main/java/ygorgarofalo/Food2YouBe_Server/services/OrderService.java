@@ -22,15 +22,13 @@ import java.util.List;
 @Service
 public class OrderService {
 
+
     @Autowired
     private OrderRepo orderRepo;
-
     @Autowired
     private ProductService productService;
-
     @Autowired
     private RestaurantService restaurantService;
-
 
     // Accessibile solo a admin
     public Page<Order> getOrders(int page, int size, String orderBy) {
@@ -72,5 +70,6 @@ public class OrderService {
         Order found = this.findById(id);
         orderRepo.delete(found);
     }
+
 
 }

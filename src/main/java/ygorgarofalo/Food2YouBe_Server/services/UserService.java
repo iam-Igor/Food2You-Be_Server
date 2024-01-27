@@ -1,20 +1,28 @@
 package ygorgarofalo.Food2YouBe_Server.services;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import ygorgarofalo.Food2YouBe_Server.entities.User;
 import ygorgarofalo.Food2YouBe_Server.exceptions.NotFoundException;
 import ygorgarofalo.Food2YouBe_Server.repositories.UserRepo;
+
+import java.io.IOException;
 
 @Service
 public class UserService {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private Cloudinary cloudinary;
 
 
     // Accessibile solo a admin
@@ -41,5 +49,15 @@ public class UserService {
     // Accessibile solo a admin
     public User findByEmail(String email) throws NotFoundException {
         return userRepo.findByEmail(email).orElseThrow(() -> new NotFoundException("Utente con email " + email + " non trovato!"));
+    }
+
+
+    public String uploadAvatarImage(MultipartFile file, long user_id) throws IOException {
+        User found = this.findById(user_id);
+        String url = (String) cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");
+
+        found.setAvatarUrl(url);
+        userRepo.save(found);
+        return url;
     }
 }
