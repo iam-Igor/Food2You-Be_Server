@@ -13,6 +13,7 @@ import ygorgarofalo.Food2YouBe_Server.entities.Product;
 import ygorgarofalo.Food2YouBe_Server.entities.User;
 import ygorgarofalo.Food2YouBe_Server.exceptions.NotFoundException;
 import ygorgarofalo.Food2YouBe_Server.payloads.OrderPayloadDTO;
+import ygorgarofalo.Food2YouBe_Server.payloads.PayloadOnlyIdDTO;
 import ygorgarofalo.Food2YouBe_Server.repositories.OrderRepo;
 
 import java.time.LocalDate;
@@ -69,6 +70,14 @@ public class OrderService {
     public void findByIdAndDelete(long id) {
         Order found = this.findById(id);
         orderRepo.delete(found);
+    }
+
+
+    // richiamato automaticamente quando il rider arriva a destinazione
+    // PATCH
+    public void setOrderDelivered(PayloadOnlyIdDTO body) {
+        Order found = this.findById(body.id());
+        found.setOrderStatus(OrderStatus.CONSEGNATO);
     }
 
 
