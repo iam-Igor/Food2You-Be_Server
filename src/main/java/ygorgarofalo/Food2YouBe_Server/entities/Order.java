@@ -25,6 +25,8 @@ public class Order {
 
     private boolean paymentAccepted;
 
+    private double totalAmount;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
