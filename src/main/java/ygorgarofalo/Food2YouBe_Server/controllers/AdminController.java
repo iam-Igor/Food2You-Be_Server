@@ -1,4 +1,4 @@
-package ygorgarofalo.Food2YouBe_Server.services;
+package ygorgarofalo.Food2YouBe_Server.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,9 +6,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ygorgarofalo.Food2YouBe_Server.entities.Product;
 import ygorgarofalo.Food2YouBe_Server.entities.Restaurant;
 import ygorgarofalo.Food2YouBe_Server.payloads.ProductListPayloadDTO;
+import ygorgarofalo.Food2YouBe_Server.payloads.ProductpayloadDTO;
 import ygorgarofalo.Food2YouBe_Server.payloads.RestaurantpayloadDTO;
+import ygorgarofalo.Food2YouBe_Server.services.ProductService;
+import ygorgarofalo.Food2YouBe_Server.services.RestaurantService;
 
 import java.io.IOException;
 
@@ -22,6 +26,9 @@ public class AdminController {
 
     @Autowired
     RestaurantService restaurantService;
+
+    @Autowired
+    private ProductService productService;
 
 
     @PostMapping("/restaurant/new") //test ok
@@ -51,4 +58,13 @@ public class AdminController {
     public String uploadRestaurantImage(@RequestBody MultipartFile file, @PathVariable long id) throws IOException {
         return restaurantService.uploadRestaurantImage(file, id);
     }
+
+
+    @PostMapping("/products/new") //test ok
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public Product addNewProductAndAssigntoRestaurant(@RequestBody ProductpayloadDTO body) {
+        return productService.saveProduct(body);
+    }
+
+
 }

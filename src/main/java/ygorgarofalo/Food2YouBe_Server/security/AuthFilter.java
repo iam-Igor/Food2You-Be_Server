@@ -53,7 +53,7 @@ public class AuthFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        String[] allowedPaths = {"/auth/**", "/restaurants/**"};
+        String[] allowedPaths = {"/auth/**", "/restaurants/**", "/products/**"};
 
         return Stream.of(allowedPaths)
                 .anyMatch(path -> pathMatcher.match(path, request.getServletPath()));
