@@ -1,5 +1,6 @@
 package ygorgarofalo.Food2YouBe_Server.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+
+@JsonIgnoreProperties({"user"})
 public class Order {
 
 
@@ -21,6 +24,8 @@ public class Order {
 
     private LocalDate orderTime;
 
+
+    // aggiungere enum qui
     private OrderStatus orderStatus;
 
     private boolean paymentAccepted;

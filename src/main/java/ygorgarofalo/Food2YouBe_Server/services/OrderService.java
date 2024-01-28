@@ -13,7 +13,6 @@ import ygorgarofalo.Food2YouBe_Server.entities.Product;
 import ygorgarofalo.Food2YouBe_Server.entities.User;
 import ygorgarofalo.Food2YouBe_Server.exceptions.NotFoundException;
 import ygorgarofalo.Food2YouBe_Server.payloads.OrderPayloadDTO;
-import ygorgarofalo.Food2YouBe_Server.payloads.PayloadOnlyIdDTO;
 import ygorgarofalo.Food2YouBe_Server.repositories.OrderRepo;
 
 import java.time.LocalDate;
@@ -40,9 +39,9 @@ public class OrderService {
 
 
     // metodo che piazza una ordinazione, nel payload arriva un array di id di prodotti
-    //e un id di ristornate, lo user lo passerò attraverso auth principal
+    //e un id di ristorante, lo user lo passerò attraverso auth principal
 
-    public Order PlaceOrder(OrderPayloadDTO payload, User user) {
+    public Order placeOrder(OrderPayloadDTO payload, User user) {
         List<Product> productList = new ArrayList<>();
         Order newOrder = new Order();
         double total = 0.0;
@@ -75,8 +74,8 @@ public class OrderService {
 
     // richiamato automaticamente quando il rider arriva a destinazione
     // PATCH
-    public void setOrderDelivered(PayloadOnlyIdDTO body) {
-        Order found = this.findById(body.id());
+    public void setOrderDelivered(long id) {
+        Order found = this.findById(id);
         found.setOrderStatus(OrderStatus.CONSEGNATO);
     }
 
