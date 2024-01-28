@@ -31,6 +31,9 @@ public class Product {
 
     private String imageUrl;
 
+    @Enumerated(EnumType.STRING)
+    private ProductType productType;
+
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;

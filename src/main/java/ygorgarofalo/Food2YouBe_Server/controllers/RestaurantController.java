@@ -1,10 +1,7 @@
 package ygorgarofalo.Food2YouBe_Server.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ygorgarofalo.Food2YouBe_Server.entities.Restaurant;
 import ygorgarofalo.Food2YouBe_Server.services.RestaurantService;
 
@@ -31,8 +28,14 @@ public class RestaurantController {
 
 
     @GetMapping("/city/{city}")// test ok
-    public List<Restaurant> getRestaurantasByCity(@PathVariable String city) {
+    public List<Restaurant> getRestaurantsByCity(@PathVariable String city) {
         return restaurantService.getRestaurantsByCityName(city);
+    }
+
+
+    @GetMapping("/search")
+    public List<Restaurant> getByCityAndSummary(@RequestParam String city, @RequestParam String summary) {
+        return restaurantService.getRestaurantsByCityAndSummary(city, summary);
     }
 
 

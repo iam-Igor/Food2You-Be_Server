@@ -25,7 +25,7 @@ public class Order {
     private LocalDate orderTime;
 
 
-    // aggiungere enum qui
+    @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
     private boolean paymentAccepted;

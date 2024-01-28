@@ -14,7 +14,10 @@ public record RestaurantpayloadDTO(
         @NotEmpty(message = "Il campo longitude non può essere vuoto")
         double longitude,
         @NotEmpty(message = "Il campo latitude non può essere vuoto")
-        double latitude
+        double latitude,
+
+        @NotEmpty(message = "Il campo summary non può essere vuoto")
+        String summary
 
 
         // l'avatar url verrà caricato in seguito con un altro metodo

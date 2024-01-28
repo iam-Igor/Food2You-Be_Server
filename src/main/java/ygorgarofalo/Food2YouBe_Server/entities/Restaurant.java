@@ -31,6 +31,9 @@ public class Restaurant {
 
     private double latitude;
 
+    @Enumerated(EnumType.STRING)
+    private Summary summary;
+
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> productList;
 

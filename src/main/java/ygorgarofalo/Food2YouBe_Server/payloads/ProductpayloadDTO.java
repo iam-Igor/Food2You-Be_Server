@@ -13,6 +13,11 @@ public record ProductpayloadDTO(
         String description,
         @NotEmpty(message = "Il campo calories non può essere vuoto")
         double calories,
+
+        @NotEmpty(message = "Il campo type non può essere vuoto")
+        String type,
+        
+
         @NotEmpty(message = "Il campo restaurantId non può essere vuoto")
         long restaurantId
 ) {

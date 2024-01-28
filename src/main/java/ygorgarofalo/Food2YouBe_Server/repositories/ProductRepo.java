@@ -15,4 +15,5 @@ public interface ProductRepo extends JpaRepository<Product, Long> {
     @Query("SELECT p FROM Product p WHERE p.restaurant.id = :rest_id")
     List<Product> findByRestaurantId(@Param("rest_id") long rest_id);
 
+
 }

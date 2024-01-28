@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ygorgarofalo.Food2YouBe_Server.entities.Product;
 import ygorgarofalo.Food2YouBe_Server.entities.Restaurant;
+import ygorgarofalo.Food2YouBe_Server.entities.Summary;
+import ygorgarofalo.Food2YouBe_Server.exceptions.BadRequestException;
 import ygorgarofalo.Food2YouBe_Server.exceptions.NotFoundException;
 import ygorgarofalo.Food2YouBe_Server.payloads.ProductListPayloadDTO;
 import ygorgarofalo.Food2YouBe_Server.payloads.RestaurantpayloadDTO;
@@ -52,6 +54,25 @@ public class RestaurantService {
         newRestaurant.setLongitude(body.longitude());
         newRestaurant.setLatitude(body.latitude());
         newRestaurant.setStreetAddress(body.streetAddress());
+        switch (body.summary()) {
+            case "PIZZA":
+                newRestaurant.setSummary(Summary.PIZZA);
+                break;
+            case "FAST_FOOD":
+                newRestaurant.setSummary(Summary.FAST_FOOD);
+                break;
+            case "SUSHI":
+                newRestaurant.setSummary(Summary.SUSHI);
+                break;
+            case "KEBAB":
+                newRestaurant.setSummary(Summary.KEBAB);
+                break;
+            case "PASTA":
+                newRestaurant.setSummary(Summary.PASTA);
+                break;
+            default:
+                throw new BadRequestException("Errore nella sintassi del campo summary.");
+        }
         return restaurantRepo.save(newRestaurant);
     }
 
@@ -86,5 +107,10 @@ public class RestaurantService {
         found.setImageUrl(url);
         restaurantRepo.save(found);
         return url;
+    }
+
+
+    public List<Restaurant> getRestaurantsByCityAndSummary(String city, String summary) {
+        return restaurantRepo.selectByCityAndSummary(city, summary);
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ygorgarofalo.Food2YouBe_Server.entities.Product;
+import ygorgarofalo.Food2YouBe_Server.entities.ProductType;
 import ygorgarofalo.Food2YouBe_Server.entities.Restaurant;
 import ygorgarofalo.Food2YouBe_Server.exceptions.NotFoundException;
 import ygorgarofalo.Food2YouBe_Server.payloads.ProductpayloadDTO;
@@ -45,6 +46,11 @@ public class ProductService {
         newProduct.setDescription(body.description());
         newProduct.setIngredients(body.ingredients());
         newProduct.setPrice(body.price());
+        if (body.type().equals("DRINK")) {
+            newProduct.setProductType(ProductType.DRINK);
+        } else {
+            newProduct.setProductType(ProductType.FOOD);
+        }
         newProduct.setRestaurant(found);
 
         return productRepo.save(newProduct);
@@ -76,4 +82,6 @@ public class ProductService {
         Product found = this.findById(id);
         productRepo.delete(found);
     }
+
+
 }
