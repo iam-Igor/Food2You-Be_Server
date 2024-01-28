@@ -39,6 +39,7 @@ public class AdminController {
     }
 
     @PatchMapping("/restaurant/add")
+    // test ok ma per associare un prodotto ad un riustorante uso direttamente il save del prodotto stesso
     @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public Restaurant addProducts(@RequestBody ProductListPayloadDTO payloadDTO) {
@@ -46,16 +47,16 @@ public class AdminController {
     }
 
 
-    @DeleteMapping("/restaurant/{id}")
+    @DeleteMapping("/restaurant/{id}") //test ok
     @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteRestaurant(@PathVariable long id) {
         restaurantService.findByIdAndDelete(id);
     }
 
-    @PatchMapping("/restaurant/upload/{id}")
+    @PatchMapping("/restaurant/upload/{id}") // test ok
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String uploadRestaurantImage(@RequestBody MultipartFile file, @PathVariable long id) throws IOException {
+    public String uploadRestaurantImage(@RequestParam("image") MultipartFile file, @PathVariable long id) throws IOException {
         return restaurantService.uploadRestaurantImage(file, id);
     }
 

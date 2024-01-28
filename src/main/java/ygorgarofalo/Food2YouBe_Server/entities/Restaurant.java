@@ -2,10 +2,7 @@ package ygorgarofalo.Food2YouBe_Server.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@JsonIgnoreProperties({"orderList"})
+@JsonIgnoreProperties({"orderList", "productList"})
 public class Restaurant {
 
 
@@ -34,7 +31,7 @@ public class Restaurant {
 
     private double latitude;
 
-    @OneToMany(mappedBy = "restaurant")
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> productList;
 
     private String imageUrl;
