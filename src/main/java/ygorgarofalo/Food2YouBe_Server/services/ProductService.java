@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ygorgarofalo.Food2YouBe_Server.entities.Product;
 import ygorgarofalo.Food2YouBe_Server.entities.ProductType;
-import ygorgarofalo.Food2YouBe_Server.entities.Restaurant;
 import ygorgarofalo.Food2YouBe_Server.exceptions.NotFoundException;
 import ygorgarofalo.Food2YouBe_Server.payloads.ProductpayloadDTO;
 import ygorgarofalo.Food2YouBe_Server.repositories.ProductRepo;
@@ -39,8 +38,6 @@ public class ProductService {
 
     public Product saveProduct(ProductpayloadDTO body) {
         Product newProduct = new Product();
-        Restaurant found = restaurantRepo.findById(body.restaurantId()).orElseThrow(() -> new NotFoundException(body.restaurantId()));
-
         newProduct.setName(body.name());
         newProduct.setCalories(body.calories());
         newProduct.setDescription(body.description());
@@ -51,8 +48,6 @@ public class ProductService {
         } else {
             newProduct.setProductType(ProductType.FOOD);
         }
-        newProduct.setRestaurant(found);
-
         return productRepo.save(newProduct);
 
     }

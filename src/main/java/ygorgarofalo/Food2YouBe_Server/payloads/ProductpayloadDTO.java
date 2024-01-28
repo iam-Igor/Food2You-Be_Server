@@ -15,10 +15,8 @@ public record ProductpayloadDTO(
         double calories,
 
         @NotEmpty(message = "Il campo type non può essere vuoto")
-        String type,
-        
+        String type
 
-        @NotEmpty(message = "Il campo restaurantId non può essere vuoto")
-        long restaurantId
+
 ) {
 }

@@ -39,13 +39,19 @@ public class AdminController {
     }
 
     @PatchMapping("/restaurant/add")
-    // test ok ma per associare un prodotto ad un riustorante uso direttamente il save del prodotto stesso
+    // test ok
     @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public Restaurant addProducts(@RequestBody ProductListPayloadDTO payloadDTO) {
         return restaurantService.addProducts(payloadDTO);
     }
 
+
+    @PostMapping("/products/new") //test ok
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public Product addNewProductAndAssigntoRestaurant(@RequestBody ProductpayloadDTO body) {
+        return productService.saveProduct(body);
+    }
 
     @DeleteMapping("/restaurant/{id}") //test ok
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -58,13 +64,6 @@ public class AdminController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public String uploadRestaurantImage(@RequestParam("image") MultipartFile file, @PathVariable long id) throws IOException {
         return restaurantService.uploadRestaurantImage(file, id);
-    }
-
-
-    @PostMapping("/products/new") //test ok
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public Product addNewProductAndAssigntoRestaurant(@RequestBody ProductpayloadDTO body) {
-        return productService.saveProduct(body);
     }
 
 
