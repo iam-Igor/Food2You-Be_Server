@@ -20,7 +20,7 @@ public class UserController {
     private UserService userService;
 
 
-    @GetMapping
+    @GetMapping // test ok
     @PreAuthorize("hasAuthority('ADMIN')")
     public Page<User> getUsers(@RequestParam(defaultValue = "0") int page,
                                @RequestParam(defaultValue = "10") int size,
@@ -29,21 +29,21 @@ public class UserController {
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // test ok
     @PreAuthorize("hasAuthority('ADMIN')")
     public User findById(@PathVariable long id) {
         return userService.findById(id);
     }
 
 
-    @DeleteMapping("/me")
+    @DeleteMapping("/me") // test ok
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@AuthenticationPrincipal User currentUser) {
         userService.findByIdAndDelete(currentUser.getId());
     }
 
 
-    @GetMapping("/me")
+    @GetMapping("/me")// test ok
     public User getProfile(@AuthenticationPrincipal User user) {
         return user;
     }

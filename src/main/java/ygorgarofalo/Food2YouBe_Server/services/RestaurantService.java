@@ -4,10 +4,6 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ygorgarofalo.Food2YouBe_Server.entities.Product;
@@ -33,10 +29,8 @@ public class RestaurantService {
     private Cloudinary cloudinary;
 
 
-    public Page<Restaurant> getRestaurants(int page, int size, String orderBy) {
-        if (size >= 100) size = 100;
-        Pageable pageable = PageRequest.of(page, size, Sort.by(orderBy));
-        return restaurantRepo.findAll(pageable);
+    public List<Restaurant> getRestaurants() {
+        return restaurantRepo.findAll();
     }
 
 
@@ -45,7 +39,7 @@ public class RestaurantService {
     }
 
 
-    // questo lo userò per cercare ristornati divisi per città
+    // questo lo userò per cercare ristoranti divisi per città
     public List<Restaurant> getRestaurantsByCityName(String cityName) {
         return restaurantRepo.findByCityIgnoreCase(cityName);
     }
