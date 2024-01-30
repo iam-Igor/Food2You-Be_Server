@@ -14,10 +14,10 @@ public class CSVRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
 
-        String filePath = "./CSV/pasta_drink.csv";
+        String filePath = "./CSV/kebab_drinks.csv";
         //csvService.importProductsFromCsv(filePath);
 
-        System.out.println("Importazione completata.");
+        
     }
 }
 
