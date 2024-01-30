@@ -2,6 +2,7 @@ package ygorgarofalo.Food2YouBe_Server.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ygorgarofalo.Food2YouBe_Server.entities.Product;
 import ygorgarofalo.Food2YouBe_Server.entities.Restaurant;
 import ygorgarofalo.Food2YouBe_Server.services.RestaurantService;
 
@@ -32,6 +33,11 @@ public class RestaurantController {
         return restaurantService.getRestaurantsByCityName(city);
     }
 
+
+    @GetMapping("/{id}/products")
+    public List<Product> getProductList(@PathVariable long id) {
+        return restaurantService.getRestaurantProductList(id);
+    }
 
     @GetMapping("/search")
     public List<Restaurant> getByCityAndSummary(@RequestParam String city, @RequestParam String summary) {

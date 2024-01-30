@@ -91,6 +91,11 @@
             <artifactId>jjwt-api</artifactId>
             <version>0.12.3</version>
         </dependency>
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>5.6</version> <!-- Verifica la versione più recente su Maven Central -->
+        </dependency>
     </dependencies>
 
     <build>

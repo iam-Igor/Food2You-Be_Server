@@ -1,0 +1,13 @@
+"id","calories","description","image_url","ingredients","name","price","product_type","order_id","restaurant_id"
+"1152","780","Una deliziosa pasta condita con uova, pancetta, pecorino romano e pepe nero.",NULL,"Pasta, uova, pancetta, pecorino romano, pepe nero","Pasta alla Carbonara","8.99","FOOD",NULL,NULL
+"1153","720","Una classica pasta condita con un gustoso sugo di pomodoro, cipolla, aglio e basilico.",NULL,"Pasta, pomodoro, cipolla, aglio, basilico, olio d'oliva","Pasta al Sugo di Pomodoro","9.99","FOOD",NULL,NULL
+"1154","820","Una pasta dal sapore deciso con un delizioso sugo di pomodoro, guanciale, pecorino romano e peperoncino.",NULL,"Pasta, pomodoro, guanciale, pecorino romano, peperoncino","Pasta alla Amatriciana","11.49","FOOD",NULL,NULL
+"1155","950","Una pasta ricca di sapori del mare con frutti di mare misti, pomodoro, aglio, prezzemolo e olio d'oliva.",NULL,"Pasta, frutti di mare misti, pomodoro, aglio, prezzemolo, olio d'oliva","Pasta ai Frutti di Mare","13.99","FOOD",NULL,NULL
+"1156","890","Una pasta semplice ma gustosa con guanciale, pecorino romano e pepe nero.",NULL,"Pasta, guanciale, pecorino romano, pepe nero","Pasta alla Gricia","12.99","FOOD",NULL,NULL
+"1157","790","Una pasta fresca e profumata con un delizioso pesto preparato con basilico, pinoli, aglio, olio d'oliva e pecorino romano.",NULL,"Pasta, basilico, pinoli, aglio, olio d'oliva, pecorino romano","Pasta al Pesto","10.99","FOOD",NULL,NULL
+"562","140","La classica Coca Cola, una bibita rinfrescante e gustosa perfetta per accompagnare il tuo pasto.",NULL,"Acqua, Zucchero, Anidride carbonica, Coloranti, Aromi naturali e artificiali, Acidificante","Coca Cola","1.99","DRINK",NULL,"176"
+"563","0","Acqua fresca e pura, la scelta perfetta per chi desidera una bevanda senza calorie e senza zuccheri aggiunti.",NULL,"Acqua","Acqua","0.99","DRINK",NULL,"176"
+"564","150","La Fanta, una bevanda frizzante e aromatizzata all'arancia, perfetta per chi ama i sapori dolci e frizzanti.",NULL,"Acqua, Zucchero, Anidride carbonica, Coloranti, Aromi naturali e artificiali, Acidificante","Fanta","1.99","DRINK",NULL,"176"
+"565","140","La Sprite, una bibita gassata e dissetante con un delizioso gusto di limone-lime, ideale per rinfrescarsi durante la giornata.",NULL,"Acqua, Zucchero, Anidride carbonica, Aromi naturali e artificiali, Acidificante","Sprite","1.99","DRINK",NULL,"176"
+"566","150","Una birra fresca e leggera, perfetta per accompagnare i tuoi pasti al McDonald's con un tocco di raffinatezza.",NULL,"Malto d'orzo, Luppolo, Acqua","Birra","3.49","DRINK",NULL,"176"
+"167","120","Un vino pregiato, perfetto per chi desidera accompagnare il pasto con una bevanda elegante e ricercata.",NULL,"Uva","Vino","4.99","DRINK",NULL,"152"

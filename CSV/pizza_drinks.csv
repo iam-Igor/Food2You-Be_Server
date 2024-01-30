@@ -1,0 +1,14 @@
+"id","calories","description","image_url","ingredients","name","price","product_type","order_id","restaurant_id"
+"752","700","Una classica pizza italiana con pomodoro, mozzarella e basilico.",NULL,"Pomodoro, mozzarella, basilico","Pizza Margherita","8.99","FOOD",NULL,NULL
+"753","850","Una pizza con pomodoro, mozzarella e abbondanti fette di pepperoni.",NULL,"Pomodoro, mozzarella, pepperoni","Pizza Pepperoni","10.99","FOOD",NULL,NULL
+"754","900","Una pizza divisa in quattro sezioni, ognuna con ingredienti rappresentativi delle quattro stagioni: funghi per l'autunno, prosciutto cotto per l'inverno, carciofi per la primavera e olive per l'estate.",NULL,"Pomodoro, mozzarella, funghi, prosciutto cotto, carciofi, olive","Pizza Quattro Stagioni","12.99","FOOD",NULL,NULL
+"755","780","Una pizza classica con pomodoro, mozzarella, prosciutto cotto e fette di ananas dolci.",NULL,"Pomodoro, mozzarella, prosciutto cotto, ananas","Pizza Hawaii","11.99","FOOD",NULL,NULL
+"756","720","Una pizza colorata e saporita con pomodoro, mozzarella e una varietà di verdure fresche.",NULL,"Pomodoro, mozzarella, peperoni, funghi, cipolla, peperoncini, olive","Pizza Vegetariana","9.99","FOOD",NULL,NULL
+"757","830","Una pizza ricca e cremosa con una selezione di quattro formaggi italiani.",NULL,"Mozzarella, gorgonzola, taleggio, grana padano","Pizza Quattro Formaggi","12.49","FOOD",NULL,NULL
+"758","790","Una pizza piccante con pomodoro, mozzarella, salame piccante e peperoncini.",NULL,"Pomodoro, mozzarella, salame piccante, peperoncini","Pizza Diavola","10.99","FOOD",NULL,NULL
+"562","140","La classica Coca Cola, una bibita rinfrescante e gustosa perfetta per accompagnare il tuo pasto.",NULL,"Acqua, Zucchero, Anidride carbonica, Coloranti, Aromi naturali e artificiali, Acidificante","Coca Cola","1.99","DRINK",NULL,"176"
+"563","0","Acqua fresca e pura, la scelta perfetta per chi desidera una bevanda senza calorie e senza zuccheri aggiunti.",NULL,"Acqua","Acqua","0.99","DRINK",NULL,"176"
+"564","150","La Fanta, una bevanda frizzante e aromatizzata all'arancia, perfetta per chi ama i sapori dolci e frizzanti.",NULL,"Acqua, Zucchero, Anidride carbonica, Coloranti, Aromi naturali e artificiali, Acidificante","Fanta","1.99","DRINK",NULL,"176"
+"565","140","La Sprite, una bibita gassata e dissetante con un delizioso gusto di limone-lime, ideale per rinfrescarsi durante la giornata.",NULL,"Acqua, Zucchero, Anidride carbonica, Aromi naturali e artificiali, Acidificante","Sprite","1.99","DRINK",NULL,"176"
+"566","150","Una birra fresca e leggera, perfetta per accompagnare i tuoi pasti al McDonald's con un tocco di raffinatezza.",NULL,"Malto d'orzo, Luppolo, Acqua","Birra","3.49","DRINK",NULL,"176"
+"167","120","Un vino pregiato, perfetto per chi desidera accompagnare il pasto con una bevanda elegante e ricercata.",NULL,"Uva","Vino","4.99","DRINK",NULL,"152"

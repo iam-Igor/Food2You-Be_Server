@@ -1,0 +1,13 @@
+"id","calories","description","image_url","ingredients","name","price","product_type","order_id","restaurant_id"
+"1502","320","Una selezione mista di sashimi fresco, includendo salmone, tonno e gamberetti.",NULL,"Salmone, tonno, gamberetti","Sashimi Misto","15.99","FOOD",NULL,NULL
+"1503","180","Nigiri di salmone fresco su base di riso cotto al vapore.",NULL,"Riso, salmone","Nigiri Salmone","9.49","FOOD",NULL,NULL
+"1504","250","Rotolo di sushi California con surimi, avocado e cetriolo avvolto in alga nori e riso.",NULL,"Riso, avocado, surimi, cetriolo, alga nori","Maki California","11.99","FOOD",NULL,NULL
+"1505","200","Cono di alga nori riempito con riso e salmone fresco.",NULL,"Riso, salmone","Temaki Salmone","8.99","FOOD",NULL,NULL
+"1506","280","Rotolo di sushi uramaki con salmone affumicato, formaggio cremoso e cetriolo, avvolto in alga nori e riso.",NULL,"Riso, salmone affumicato, formaggio cremoso, cetriolo, alga nori","Uramaki Philadelphia","13.99","FOOD",NULL,NULL
+"1507","220","Bocconcini di sushi con salmone fresco e avocado, serviti su base di riso.",NULL,"Riso, salmone, avocado","Sushi Salmone Avocado","10.49","FOOD",NULL,NULL
+"562","140","La classica Coca Cola, una bibita rinfrescante e gustosa perfetta per accompagnare il tuo pasto.",NULL,"Acqua, Zucchero, Anidride carbonica, Coloranti, Aromi naturali e artificiali, Acidificante","Coca Cola","1.99","DRINK",NULL,"176"
+"563","0","Acqua fresca e pura, la scelta perfetta per chi desidera una bevanda senza calorie e senza zuccheri aggiunti.",NULL,"Acqua","Acqua","0.99","DRINK",NULL,"176"
+"564","150","La Fanta, una bevanda frizzante e aromatizzata all'arancia, perfetta per chi ama i sapori dolci e frizzanti.",NULL,"Acqua, Zucchero, Anidride carbonica, Coloranti, Aromi naturali e artificiali, Acidificante","Fanta","1.99","DRINK",NULL,"176"
+"565","140","La Sprite, una bibita gassata e dissetante con un delizioso gusto di limone-lime, ideale per rinfrescarsi durante la giornata.",NULL,"Acqua, Zucchero, Anidride carbonica, Aromi naturali e artificiali, Acidificante","Sprite","1.99","DRINK",NULL,"176"
+"566","150","Una birra fresca e leggera, perfetta per accompagnare i tuoi pasti al McDonald's con un tocco di raffinatezza.",NULL,"Malto d'orzo, Luppolo, Acqua","Birra","3.49","DRINK",NULL,"176"
+"167","120","Un vino pregiato, perfetto per chi desidera accompagnare il pasto con una bevanda elegante e ricercata.",NULL,"Uva","Vino","4.99","DRINK",NULL,"152"

@@ -113,4 +113,12 @@ public class RestaurantService {
     public List<Restaurant> getRestaurantsByCityAndSummary(String city, String summary) {
         return restaurantRepo.selectByCityAndSummary(city, summary);
     }
+
+
+    public List<Product> getRestaurantProductList(long id) {
+
+        Restaurant found = this.findById(id);
+
+        return found.getProductList();
+    }
 }
