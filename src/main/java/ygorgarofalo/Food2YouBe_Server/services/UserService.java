@@ -2,7 +2,6 @@ package ygorgarofalo.Food2YouBe_Server.services;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -69,7 +68,7 @@ public class UserService {
 
 
     // post per modificare i dati di un utente che arriva tramite auth principal
-    @Transactional
+
     public User updateUser(User user, UserPayloadDTO payload) {
         if (user != null) {
             user.setAddress(payload.address());
@@ -78,7 +77,9 @@ public class UserService {
             user.setPassword(bcrypt.encode(payload.password()));
             user.setEmail(payload.email());
             user.setUsername(payload.username());
+            return userRepo.save(user);
+        } else {
+            return user;
         }
-        return user;
     }
 }
