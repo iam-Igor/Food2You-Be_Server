@@ -12,8 +12,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 import ygorgarofalo.Food2YouBe_Server.entities.User;
+import ygorgarofalo.Food2YouBe_Server.exceptions.NotFoundException;
 import ygorgarofalo.Food2YouBe_Server.exceptions.UnauthorizedException;
-import ygorgarofalo.Food2YouBe_Server.services.UserService;
+import ygorgarofalo.Food2YouBe_Server.repositories.UserRepo;
 
 import java.io.IOException;
 import java.util.stream.Stream;
@@ -25,7 +26,7 @@ public class AuthFilter extends OncePerRequestFilter {
     @Autowired
     private JWTTools jwtTools;
     @Autowired
-    private UserService userService;
+    private UserRepo userRepo;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -41,7 +42,7 @@ public class AuthFilter extends OncePerRequestFilter {
 
 
             String id = jwtTools.extractIdFromToken(accessToken);
-            User user = userService.findById(Long.parseLong(id));
+            User user = userRepo.findById(Long.parseLong(id)).orElseThrow(() -> new NotFoundException(id));
 
             Authentication authentication = new UsernamePasswordAuthenticationToken(user, null,
                     user.getAuthorities());

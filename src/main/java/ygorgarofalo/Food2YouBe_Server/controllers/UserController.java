@@ -5,9 +5,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ygorgarofalo.Food2YouBe_Server.entities.User;
+import ygorgarofalo.Food2YouBe_Server.payloads.UserPayloadDTO;
 import ygorgarofalo.Food2YouBe_Server.services.UserService;
 
 import java.io.IOException;
@@ -52,6 +54,13 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public String imageUploader(@RequestParam("image") MultipartFile imageFile, @AuthenticationPrincipal User user) throws IOException {
         return userService.uploadAvatarImage(imageFile, user);
+    }
+
+
+    @PostMapping("/me")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User updateUser(@AuthenticationPrincipal User user, @RequestBody @Validated UserPayloadDTO body) {
+        return userService.updateUser(user, body);
     }
 
 }

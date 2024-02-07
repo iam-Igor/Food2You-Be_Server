@@ -2,15 +2,18 @@ package ygorgarofalo.Food2YouBe_Server.services;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ygorgarofalo.Food2YouBe_Server.entities.User;
 import ygorgarofalo.Food2YouBe_Server.exceptions.NotFoundException;
+import ygorgarofalo.Food2YouBe_Server.payloads.UserPayloadDTO;
 import ygorgarofalo.Food2YouBe_Server.repositories.UserRepo;
 
 import java.io.IOException;
@@ -24,6 +27,8 @@ public class UserService {
     @Autowired
     private Cloudinary cloudinary;
 
+    @Autowired
+    private PasswordEncoder bcrypt;
 
     // Accessibile solo a admin
     public Page<User> getUsers(int page, int size, String orderBy) {
@@ -60,5 +65,20 @@ public class UserService {
         user.setAvatarUrl(url);
         userRepo.save(user);
         return url;
+    }
+
+
+    // post per modificare i dati di un utente che arriva tramite auth principal
+    @Transactional
+    public User updateUser(User user, UserPayloadDTO payload) {
+        if (user != null) {
+            user.setAddress(payload.address());
+            user.setName(payload.name());
+            user.setLastname(payload.lastname());
+            user.setPassword(bcrypt.encode(payload.password()));
+            user.setEmail(payload.email());
+            user.setUsername(payload.username());
+        }
+        return user;
     }
 }
