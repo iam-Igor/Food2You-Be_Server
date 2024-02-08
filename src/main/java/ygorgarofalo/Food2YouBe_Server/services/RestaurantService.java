@@ -111,7 +111,8 @@ public class RestaurantService {
 
 
     public List<Restaurant> getRestaurantsByCityAndSummary(String city, String summary) {
-        return restaurantRepo.selectByCityAndSummary(city, summary);
+        Summary summaryEnum = Summary.valueOf(summary.toUpperCase());
+        return restaurantRepo.selectByCityAndSummary(city, summaryEnum);
     }
 
 

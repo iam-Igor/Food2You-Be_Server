@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ygorgarofalo.Food2YouBe_Server.entities.Restaurant;
+import ygorgarofalo.Food2YouBe_Server.entities.Summary;
 
 import java.util.List;
 
@@ -16,6 +17,6 @@ public interface RestaurantRepo extends JpaRepository<Restaurant, Long> {
 
 
     @Query("SELECT r FROM Restaurant r WHERE r.city LIKE :city and r.summary = :summary")
-    List<Restaurant> selectByCityAndSummary(@Param("city") String city, @Param("summary") String summary);
+    List<Restaurant> selectByCityAndSummary(@Param("city") String city, @Param("summary") Summary summary);
 
 }
