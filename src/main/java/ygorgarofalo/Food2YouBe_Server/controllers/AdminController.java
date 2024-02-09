@@ -60,6 +60,13 @@ public class AdminController {
         restaurantService.findByIdAndDelete(id);
     }
 
+    @PatchMapping("/product/upload/{id}") // test ok
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String uploadProductImage(@RequestParam("image") MultipartFile file, @PathVariable long id) throws IOException {
+        return productService.uploadProductImage(file, id);
+    }
+
+
     @PatchMapping("/restaurant/upload/{id}") // test ok
     @PreAuthorize("hasAuthority('ADMIN')")
     public String uploadRestaurantImage(@RequestParam("image") MultipartFile file, @PathVariable long id) throws IOException {
