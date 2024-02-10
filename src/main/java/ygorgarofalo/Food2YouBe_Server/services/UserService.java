@@ -10,12 +10,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import ygorgarofalo.Food2YouBe_Server.entities.Order;
 import ygorgarofalo.Food2YouBe_Server.entities.User;
 import ygorgarofalo.Food2YouBe_Server.exceptions.NotFoundException;
 import ygorgarofalo.Food2YouBe_Server.payloads.UserPayloadDTO;
 import ygorgarofalo.Food2YouBe_Server.repositories.UserRepo;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -81,5 +83,10 @@ public class UserService {
         } else {
             return user;
         }
+    }
+
+
+    public List<Order> getOrdersList(User user) {
+        return userRepo.getAllUserOrders(user);
     }
 }

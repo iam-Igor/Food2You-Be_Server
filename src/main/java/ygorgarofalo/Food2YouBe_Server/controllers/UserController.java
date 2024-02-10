@@ -8,11 +8,13 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ygorgarofalo.Food2YouBe_Server.entities.Order;
 import ygorgarofalo.Food2YouBe_Server.entities.User;
 import ygorgarofalo.Food2YouBe_Server.payloads.UserPayloadDTO;
 import ygorgarofalo.Food2YouBe_Server.services.UserService;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -63,4 +65,10 @@ public class UserController {
         return userService.updateUser(user, body);
     }
 
+
+    //test ok
+    @GetMapping("/orders/me")
+    public List<Order> getAllOrders(@AuthenticationPrincipal User user) {
+        return userService.getOrdersList(user);
+    }
 }

@@ -13,6 +13,7 @@ import ygorgarofalo.Food2YouBe_Server.exceptions.BadRequestException;
 import ygorgarofalo.Food2YouBe_Server.exceptions.NotFoundException;
 import ygorgarofalo.Food2YouBe_Server.payloads.ProductListPayloadDTO;
 import ygorgarofalo.Food2YouBe_Server.payloads.RestaurantpayloadDTO;
+import ygorgarofalo.Food2YouBe_Server.repositories.ProductRepo;
 import ygorgarofalo.Food2YouBe_Server.repositories.RestaurantRepo;
 
 import java.io.IOException;
@@ -26,6 +27,9 @@ public class RestaurantService {
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    ProductRepo productRepo;
 
     @Autowired
     private Cloudinary cloudinary;
@@ -122,4 +126,6 @@ public class RestaurantService {
 
         return found.getProductList();
     }
+
+
 }

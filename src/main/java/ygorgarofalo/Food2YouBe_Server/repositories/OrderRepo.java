@@ -6,4 +6,6 @@ import ygorgarofalo.Food2YouBe_Server.entities.Order;
 
 @Repository
 public interface OrderRepo extends JpaRepository<Order, Long> {
+
+
 }

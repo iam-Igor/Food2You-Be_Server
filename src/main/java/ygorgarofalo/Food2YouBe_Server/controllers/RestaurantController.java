@@ -39,6 +39,7 @@ public class RestaurantController {
         return restaurantService.getRestaurantProductList(id);
     }
 
+
     @GetMapping("/search")
     public List<Restaurant> getByCityAndSummary(@RequestParam String city, @RequestParam String summary) {
         return restaurantService.getRestaurantsByCityAndSummary(city, summary);
