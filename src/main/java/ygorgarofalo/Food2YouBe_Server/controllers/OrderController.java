@@ -47,4 +47,10 @@ public class OrderController {
         orderService.setOrderDelivered(id);
     }
 
+
+    //scontrino
+    @GetMapping("/print")
+    public Order printOrder(@RequestParam("order_id") long id, @AuthenticationPrincipal User user) {
+        return orderService.printOrder(id, user);
+    }
 }

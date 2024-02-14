@@ -30,6 +30,10 @@ public class OrderService {
     @Autowired
     private RestaurantService restaurantService;
 
+
+    @Autowired
+    private UserService userService;
+
     // Accessibile solo a admin
     public Page<Order> getOrders(int page, int size, String orderBy) {
         if (size >= 100) size = 100;
@@ -77,6 +81,13 @@ public class OrderService {
     public void setOrderDelivered(long id) {
         Order found = this.findById(id);
         found.setOrderStatus(OrderStatus.CONSEGNATO);
+    }
+
+
+    // metodo che stampa un ordine (scontrino)
+    public Order printOrder(long order_id, User user) {
+        User found = userService.findById(user.getId());
+        return orderRepo.getOrderByuserIdandOrderId(order_id, found.getId());
     }
 
 

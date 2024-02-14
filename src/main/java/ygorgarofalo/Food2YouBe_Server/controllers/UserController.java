@@ -71,4 +71,6 @@ public class UserController {
     public List<Order> getAllOrders(@AuthenticationPrincipal User user) {
         return userService.getOrdersList(user);
     }
+
+
 }
