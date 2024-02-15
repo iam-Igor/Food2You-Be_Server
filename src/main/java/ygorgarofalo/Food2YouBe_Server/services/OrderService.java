@@ -11,6 +11,7 @@ import ygorgarofalo.Food2YouBe_Server.entities.Order;
 import ygorgarofalo.Food2YouBe_Server.entities.OrderStatus;
 import ygorgarofalo.Food2YouBe_Server.entities.Product;
 import ygorgarofalo.Food2YouBe_Server.entities.User;
+import ygorgarofalo.Food2YouBe_Server.exceptions.BadRequestException;
 import ygorgarofalo.Food2YouBe_Server.exceptions.NotFoundException;
 import ygorgarofalo.Food2YouBe_Server.payloads.OrderPayloadDTO;
 import ygorgarofalo.Food2YouBe_Server.repositories.OrderRepo;
@@ -78,9 +79,18 @@ public class OrderService {
 
     // richiamato automaticamente quando il rider arriva a destinazione
     // PATCH
-    public void setOrderDelivered(long id) {
+    public void setOrderDelivered(long id, User user) {
+
         Order found = this.findById(id);
-        found.setOrderStatus(OrderStatus.CONSEGNATO);
+
+        if (user.getOrderList().stream().anyMatch(order -> order.getId() == found.getId())) {
+
+            found.setOrderStatus(OrderStatus.CONSEGNATO);
+            orderRepo.save(found);
+        } else {
+           
+            throw new BadRequestException("Ordine non corrispondente all'utente loggato!");
+        }
     }
 
 

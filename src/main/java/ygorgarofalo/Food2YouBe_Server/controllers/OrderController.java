@@ -42,9 +42,8 @@ public class OrderController {
 
 
     @PatchMapping("/deliver/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public void delivered(@PathVariable long id) {
-        orderService.setOrderDelivered(id);
+    public void delivered(@PathVariable long id, @AuthenticationPrincipal User user) {
+        orderService.setOrderDelivered(id, user);
     }
 
 

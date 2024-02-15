@@ -37,7 +37,7 @@ public class User implements UserDetails {
 
     private String address;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Order> orderList;
 
     private String avatarUrl;
