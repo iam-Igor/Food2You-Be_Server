@@ -62,6 +62,16 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.68</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk15on</artifactId>
+            <version>1.68</version>
+        </dependency>
+        <dependency>
             <groupId>com.konghq</groupId>
             <artifactId>unirest-java</artifactId>
             <version>3.14.5</version>
@@ -96,6 +106,7 @@
             <artifactId>opencsv</artifactId>
             <version>5.6</version> <!-- Verifica la versione più recente su Maven Central -->
         </dependency>
+
     </dependencies>
 
     <build>
