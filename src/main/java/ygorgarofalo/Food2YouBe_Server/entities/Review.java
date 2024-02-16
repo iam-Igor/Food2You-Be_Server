@@ -1,6 +1,7 @@
 package ygorgarofalo.Food2YouBe_Server.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonIgnoreProperties("user")
 public class Review {
 
 
@@ -19,6 +21,8 @@ public class Review {
 
 
     private String message;
+
+    private int rating;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

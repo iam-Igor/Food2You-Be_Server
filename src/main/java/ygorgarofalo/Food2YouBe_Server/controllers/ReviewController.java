@@ -33,7 +33,7 @@ public class ReviewController {
 
 
     @PostMapping("/new")
-    public Review addnewReview(ReviewPayloadDTO payload, @AuthenticationPrincipal User user) {
+    public Review addnewReview(@RequestBody ReviewPayloadDTO payload, @AuthenticationPrincipal User user) {
         return reviewsService.saveNewReview(payload, user);
     }
 }

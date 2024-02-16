@@ -33,16 +33,25 @@ public class ReviewsService {
 
 
     public Review saveNewReview(ReviewPayloadDTO payload, User user) {
-
         Review newReview = new Review();
-        newReview.setMessage(payload.message());
-        newReview.setUser(user);
+        if (user != null) {
+            User found = userRepo.findById(user.getId()).orElseThrow(() -> new NotFoundException((user.getId())));
 
-        user.getReviews().add(newReview);
 
-        userRepo.save(user);
+            newReview.setMessage(payload.message());
+            newReview.setUser(found);
+            newReview.setRating(payload.rating());
+            found.getReviews().add(newReview);
 
-        return reviewRepo.save(newReview);
+            userRepo.save(found);
+            reviewRepo.save(newReview);
+        } else {
+            System.out.println("errore");
+            System.out.println(user);
+        }
+
+
+        return newReview;
     }
 
 }
