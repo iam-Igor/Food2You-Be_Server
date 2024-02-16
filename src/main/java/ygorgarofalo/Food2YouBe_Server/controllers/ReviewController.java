@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ygorgarofalo.Food2YouBe_Server.entities.Review;
 import ygorgarofalo.Food2YouBe_Server.entities.User;
 import ygorgarofalo.Food2YouBe_Server.payloads.ReviewPayloadDTO;
+import ygorgarofalo.Food2YouBe_Server.responses.ReviewResponse;
 import ygorgarofalo.Food2YouBe_Server.services.ReviewsService;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class ReviewController {
 
 
     @GetMapping("/all")
-    public List<Review> findAllReviews() {
+    public List<ReviewResponse> findAllReviews() {
         return reviewsService.findAllReviews();
     }
 

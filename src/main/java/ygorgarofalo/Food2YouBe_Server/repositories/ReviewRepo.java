@@ -7,4 +7,6 @@ import ygorgarofalo.Food2YouBe_Server.entities.Review;
 
 @Repository
 public interface ReviewRepo extends JpaRepository<Review, Long> {
+
+
 }

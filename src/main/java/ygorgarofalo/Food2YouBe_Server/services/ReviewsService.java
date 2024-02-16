@@ -9,7 +9,9 @@ import ygorgarofalo.Food2YouBe_Server.exceptions.NotFoundException;
 import ygorgarofalo.Food2YouBe_Server.payloads.ReviewPayloadDTO;
 import ygorgarofalo.Food2YouBe_Server.repositories.ReviewRepo;
 import ygorgarofalo.Food2YouBe_Server.repositories.UserRepo;
+import ygorgarofalo.Food2YouBe_Server.responses.ReviewResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,10 +29,19 @@ public class ReviewsService {
     }
 
 
-    public List<Review> findAllReviews() {
-        return reviewRepo.findAll();
+    public List<ReviewResponse> findAllReviews() {
+        List<Review> reviews = reviewRepo.findAll();
+        return mapReviewsToRecords(reviews);
     }
 
+    private List<ReviewResponse> mapReviewsToRecords(List<Review> reviews) {
+        List<ReviewResponse> reviewRecords = new ArrayList<>();
+        for (Review review : reviews) {
+            ReviewResponse reviewRecord = new ReviewResponse(review.getId(), review.getUser().getUsername(), review.getMessage(), review.getRating());
+            reviewRecords.add(reviewRecord);
+        }
+        return reviewRecords;
+    }
 
     public Review saveNewReview(ReviewPayloadDTO payload, User user) {
         Review newReview = new Review();
