@@ -47,6 +47,16 @@ public class AdminController {
     }
 
 
+    //modifica di un ristorante
+
+    @PatchMapping("/restaurant/update/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Restaurant updaterestaurant(@PathVariable long id, @RequestBody RestaurantpayloadDTO body) {
+        return restaurantService.findByIdAndUpdate(id, body);
+
+    }
+
     @PostMapping("/products/new") //test ok
     @PreAuthorize("hasAuthority('ADMIN')")
     public Product addNewProductAndAssigntoRestaurant(@RequestBody ProductpayloadDTO body) {

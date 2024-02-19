@@ -128,4 +128,41 @@ public class RestaurantService {
     }
 
 
+    //modifica di un ristorante
+
+    public Restaurant findByIdAndUpdate(long id, RestaurantpayloadDTO body) {
+
+        Restaurant found = this.findById(id);
+
+        found.setCity(body.city());
+        found.setName(body.name());
+        found.setLatitude(body.latitude());
+        found.setLongitude(body.longitude());
+        found.setStreetAddress(body.streetAddress());
+        switch (body.summary()) {
+            case "PIZZA":
+                found.setSummary(Summary.PIZZA);
+                break;
+            case "FAST_FOOD":
+                found.setSummary(Summary.FAST_FOOD);
+                break;
+            case "SUSHI":
+                found.setSummary(Summary.SUSHI);
+                break;
+            case "KEBAB":
+                found.setSummary(Summary.KEBAB);
+                break;
+            case "PASTA":
+                found.setSummary(Summary.PASTA);
+                break;
+            default:
+                throw new BadRequestException("Errore nella sintassi del campo summary.");
+        }
+
+        return restaurantRepo.save(found);
+
+
+    }
+
+
 }
