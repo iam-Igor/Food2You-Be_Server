@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ygorgarofalo.Food2YouBe_Server.entities.Product;
 import ygorgarofalo.Food2YouBe_Server.entities.ProductType;
+import ygorgarofalo.Food2YouBe_Server.entities.Restaurant;
 import ygorgarofalo.Food2YouBe_Server.exceptions.NotFoundException;
+import ygorgarofalo.Food2YouBe_Server.payloads.ProductUpdateDTO;
 import ygorgarofalo.Food2YouBe_Server.payloads.ProductpayloadDTO;
 import ygorgarofalo.Food2YouBe_Server.repositories.ProductRepo;
 import ygorgarofalo.Food2YouBe_Server.repositories.RestaurantRepo;
@@ -36,7 +38,16 @@ public class ProductService {
     }
 
 
+    public Page<Product> findProductsByName(int page, int size, String order, String name) {
+        if (size >= 100) size = 100;
+        Pageable pageable = PageRequest.of(page, size, Sort.by(order));
+
+        return productRepo.getProductsByName(name, pageable);
+
+    }
+
     public Product saveProduct(ProductpayloadDTO body) {
+        Restaurant found = restaurantRepo.findById(body.restaurantId()).orElseThrow(() -> new NotFoundException(body.restaurantId()));
         Product newProduct = new Product();
         newProduct.setName(body.name());
         newProduct.setCalories(body.calories());
@@ -48,6 +59,8 @@ public class ProductService {
         } else {
             newProduct.setProductType(ProductType.FOOD);
         }
+        newProduct.setRestaurant(found);
+        found.getProductList().add(newProduct);
         return productRepo.save(newProduct);
 
     }
@@ -76,6 +89,25 @@ public class ProductService {
     public void findByIdAndDelete(long id) {
         Product found = this.findById(id);
         productRepo.delete(found);
+    }
+
+
+    public Product findByIdAndUpdate(long id, ProductUpdateDTO body) {
+        Product found = this.findById(id);
+
+        found.setPrice(body.price());
+        found.setName(body.name());
+        found.setDescription(body.description());
+        found.setCalories(body.calories());
+        found.setIngredients(body.ingredients());
+        if (body.type().equals("DRINK")) {
+            found.setProductType(ProductType.DRINK);
+        } else {
+            found.setProductType(ProductType.FOOD);
+        }
+
+        return productRepo.save(found);
+
     }
 
 

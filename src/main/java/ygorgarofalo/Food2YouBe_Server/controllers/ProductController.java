@@ -31,4 +31,12 @@ public class ProductController {
         return productService.getProductsByRestaurantId(id);
     }
 
+
+    @GetMapping("/search")
+    public Page<Product> findByName(@RequestParam(defaultValue = "0") int page,
+                                    @RequestParam(defaultValue = "10") int size,
+                                    @RequestParam(defaultValue = "id") String order,
+                                    @RequestParam String name) {
+        return productService.findProductsByName(page, size, order, name);
+    }
 }

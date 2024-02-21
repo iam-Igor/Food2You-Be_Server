@@ -2,15 +2,19 @@ package ygorgarofalo.Food2YouBe_Server.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ygorgarofalo.Food2YouBe_Server.entities.Order;
 import ygorgarofalo.Food2YouBe_Server.entities.Product;
 import ygorgarofalo.Food2YouBe_Server.entities.Restaurant;
 import ygorgarofalo.Food2YouBe_Server.payloads.ProductListPayloadDTO;
+import ygorgarofalo.Food2YouBe_Server.payloads.ProductUpdateDTO;
 import ygorgarofalo.Food2YouBe_Server.payloads.ProductpayloadDTO;
 import ygorgarofalo.Food2YouBe_Server.payloads.RestaurantpayloadDTO;
+import ygorgarofalo.Food2YouBe_Server.services.OrderService;
 import ygorgarofalo.Food2YouBe_Server.services.ProductService;
 import ygorgarofalo.Food2YouBe_Server.services.RestaurantService;
 
@@ -25,10 +29,14 @@ public class AdminController {
 
 
     @Autowired
-    RestaurantService restaurantService;
+    private RestaurantService restaurantService;
 
     @Autowired
     private ProductService productService;
+
+
+    @Autowired
+    private OrderService orderService;
 
 
     @PostMapping("/restaurant/new") //test ok
@@ -59,7 +67,7 @@ public class AdminController {
 
     @PostMapping("/products/new") //test ok
     @PreAuthorize("hasAuthority('ADMIN')")
-    public Product addNewProductAndAssigntoRestaurant(@RequestBody ProductpayloadDTO body) {
+    public Product addNewProductAndAssignToRestaurant(@RequestBody ProductpayloadDTO body) {
         return productService.saveProduct(body);
     }
 
@@ -83,5 +91,27 @@ public class AdminController {
         return restaurantService.uploadRestaurantImage(file, id);
     }
 
+
+    @PatchMapping("products/update/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public Product updateProduct(@PathVariable long id, @RequestBody ProductUpdateDTO body) {
+        return productService.findByIdAndUpdate(id, body);
+    }
+
+
+    @DeleteMapping("/products/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public void deleteProduct(@PathVariable long id) {
+        productService.findByIdAndDelete(id);
+    }
+
+
+    @GetMapping("/orders")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public Page<Order> getOrders(@RequestParam(defaultValue = "0") int page,
+                                 @RequestParam(defaultValue = "10") int size,
+                                 @RequestParam(defaultValue = "id") String order) {
+        return orderService.getOrders(page, size, order);
+    }
 
 }
