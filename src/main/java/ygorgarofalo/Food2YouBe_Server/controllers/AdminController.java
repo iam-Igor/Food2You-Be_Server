@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ygorgarofalo.Food2YouBe_Server.entities.Order;
 import ygorgarofalo.Food2YouBe_Server.entities.Product;
 import ygorgarofalo.Food2YouBe_Server.entities.Restaurant;
+import ygorgarofalo.Food2YouBe_Server.entities.User;
 import ygorgarofalo.Food2YouBe_Server.payloads.ProductListPayloadDTO;
 import ygorgarofalo.Food2YouBe_Server.payloads.ProductUpdateDTO;
 import ygorgarofalo.Food2YouBe_Server.payloads.ProductpayloadDTO;
@@ -17,6 +18,7 @@ import ygorgarofalo.Food2YouBe_Server.payloads.RestaurantpayloadDTO;
 import ygorgarofalo.Food2YouBe_Server.services.OrderService;
 import ygorgarofalo.Food2YouBe_Server.services.ProductService;
 import ygorgarofalo.Food2YouBe_Server.services.RestaurantService;
+import ygorgarofalo.Food2YouBe_Server.services.UserService;
 
 import java.io.IOException;
 
@@ -27,7 +29,8 @@ import java.io.IOException;
 @RequestMapping("/admin")
 public class AdminController {
 
-
+    @Autowired
+    private UserService userService;
     @Autowired
     private RestaurantService restaurantService;
 
@@ -114,4 +117,12 @@ public class AdminController {
         return orderService.getOrders(page, size, order);
     }
 
+
+    @GetMapping("/users") // test ok
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public Page<User> getUsers(@RequestParam(defaultValue = "0") int page,
+                               @RequestParam(defaultValue = "10") int size,
+                               @RequestParam(defaultValue = "id") String order) {
+        return userService.getUsers(page, size, order);
+    }
 }

@@ -9,7 +9,7 @@ public class ReviewResponse {
 
     private int rating;
 
-    public ReviewResponse(long id, String username, String message, int rating) {
+    public ReviewResponse(long idrev, String username, String message, int rating) {
         this.id = id;
         this.username = username;
         this.message = message;

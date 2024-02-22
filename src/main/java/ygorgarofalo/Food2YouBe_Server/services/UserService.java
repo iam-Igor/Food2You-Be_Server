@@ -14,6 +14,7 @@ import ygorgarofalo.Food2YouBe_Server.entities.Order;
 import ygorgarofalo.Food2YouBe_Server.entities.User;
 import ygorgarofalo.Food2YouBe_Server.exceptions.NotFoundException;
 import ygorgarofalo.Food2YouBe_Server.payloads.UserPayloadDTO;
+import ygorgarofalo.Food2YouBe_Server.repositories.OrderRepo;
 import ygorgarofalo.Food2YouBe_Server.repositories.UserRepo;
 
 import java.io.IOException;
@@ -27,6 +28,9 @@ public class UserService {
 
     @Autowired
     private Cloudinary cloudinary;
+
+    @Autowired
+    private OrderRepo orderRepo;
 
     @Autowired
     private PasswordEncoder bcrypt;
@@ -48,6 +52,12 @@ public class UserService {
     // Accessibile solo a admin
     public void findByIdAndDelete(long id) {
         User found = this.findById(id);
+
+        for (Order order : found.getOrderList()) {
+            order.setUser(null);
+
+        }
+        orderRepo.saveAll(found.getOrderList());
         userRepo.delete(found);
     }
 

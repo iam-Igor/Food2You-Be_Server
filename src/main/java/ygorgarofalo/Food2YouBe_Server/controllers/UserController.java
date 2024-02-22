@@ -1,7 +1,6 @@
 package ygorgarofalo.Food2YouBe_Server.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,15 +21,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-
-    @GetMapping // test ok
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public Page<User> getUsers(@RequestParam(defaultValue = "0") int page,
-                               @RequestParam(defaultValue = "10") int size,
-                               @RequestParam(defaultValue = "id") String order) {
-        return userService.getUsers(page, size, order);
-    }
 
 
     @GetMapping("/{id}") // test ok
