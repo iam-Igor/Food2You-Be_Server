@@ -7,6 +7,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ygorgarofalo.Food2YouBe_Server.entities.CreditCard;
 import ygorgarofalo.Food2YouBe_Server.entities.Order;
 import ygorgarofalo.Food2YouBe_Server.entities.User;
 import ygorgarofalo.Food2YouBe_Server.payloads.UserPayloadDTO;
@@ -62,5 +63,10 @@ public class UserController {
         return userService.getOrdersList(user);
     }
 
+
+    @GetMapping("/payment/get")
+    public CreditCard getCreditCard(@AuthenticationPrincipal User user) {
+        return userService.getCreditCard(user);
+    }
 
 }

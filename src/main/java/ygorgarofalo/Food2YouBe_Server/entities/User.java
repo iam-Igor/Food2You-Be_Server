@@ -38,6 +38,9 @@ public class User implements UserDetails {
 
     private String address;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private CreditCard creditCard;
+
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Order> orderList;
 

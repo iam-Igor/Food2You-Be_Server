@@ -37,7 +37,11 @@ public class ReviewsService {
     private List<ReviewResponse> mapReviewsToRecords(List<Review> reviews) {
         List<ReviewResponse> reviewRecords = new ArrayList<>();
         for (Review review : reviews) {
-            ReviewResponse reviewRecord = new ReviewResponse(review.getId(), review.getUser().getUsername(), review.getMessage(), review.getRating());
+            ReviewResponse reviewRecord = new ReviewResponse();
+            reviewRecord.setUsername(review.getUser().getUsername());
+            reviewRecord.setMessage(review.getMessage());
+            reviewRecord.setRating(review.getRating());
+            reviewRecord.setId(review.getId());
             reviewRecords.add(reviewRecord);
         }
         return reviewRecords;

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import ygorgarofalo.Food2YouBe_Server.entities.CreditCard;
 import ygorgarofalo.Food2YouBe_Server.entities.Order;
 import ygorgarofalo.Food2YouBe_Server.entities.User;
 import ygorgarofalo.Food2YouBe_Server.exceptions.NotFoundException;
@@ -98,5 +99,11 @@ public class UserService {
 
     public List<Order> getOrdersList(User user) {
         return userRepo.getAllUserOrders(user);
+    }
+
+
+    public CreditCard getCreditCard(User user) {
+        User found = this.findById(user.getId());
+        return found.getCreditCard();
     }
 }

@@ -1,5 +1,12 @@
 package ygorgarofalo.Food2YouBe_Server.responses;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@Getter
+@Setter
 public class ReviewResponse {
 
     private long id;
@@ -9,35 +16,5 @@ public class ReviewResponse {
 
     private int rating;
 
-    public ReviewResponse(long idrev, String username, String message, int rating) {
-        this.id = id;
-        this.username = username;
-        this.message = message;
-        this.rating = rating;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
 }
