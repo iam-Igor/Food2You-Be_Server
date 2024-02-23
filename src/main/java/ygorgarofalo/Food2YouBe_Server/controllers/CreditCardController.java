@@ -20,7 +20,6 @@ public class CreditCardController {
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
     public CreditCard saveNewCreditCard(@AuthenticationPrincipal User user, @RequestBody CreditCardDTO body) {
-        System.out.println(body);
         return creditCardService.saveCreditCard(user, body);
     }
 
