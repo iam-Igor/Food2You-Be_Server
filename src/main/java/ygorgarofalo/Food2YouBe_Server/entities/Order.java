@@ -49,5 +49,7 @@ public class Order {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
+    private String userPosition;
+
 
 }

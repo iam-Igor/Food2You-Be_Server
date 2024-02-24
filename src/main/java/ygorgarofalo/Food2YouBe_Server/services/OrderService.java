@@ -62,6 +62,7 @@ public class OrderService {
         newOrder.setRestaurant(restaurantService.findById(payload.restaurantId()));
         newOrder.setTotalAmount(total);
         newOrder.setPaymentAccepted(true);
+        newOrder.setUserPosition(payload.userAddress());
         return orderRepo.save(newOrder);
     }
 
@@ -88,7 +89,7 @@ public class OrderService {
             found.setOrderStatus(OrderStatus.CONSEGNATO);
             orderRepo.save(found);
         } else {
-           
+
             throw new BadRequestException("Ordine non corrispondente all'utente loggato!");
         }
     }

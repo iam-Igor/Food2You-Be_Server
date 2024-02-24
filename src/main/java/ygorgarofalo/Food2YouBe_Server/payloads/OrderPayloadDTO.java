@@ -18,8 +18,11 @@ public record OrderPayloadDTO(
         // che verranno poi cercati a db successivamente ed aggiunti all'ordine
 
         @NotEmpty(message = "Il campo restaurantId non può essere vuoto")
-        Long restaurantId
+        Long restaurantId,
 
+
+        @NotEmpty(message = "Il campo userAdrress non può essere vuoto")
+        String userAddress
 
 ) {
 }
