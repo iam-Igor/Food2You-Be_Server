@@ -15,7 +15,7 @@ public record OrderPayloadDTO(
         List<Long> productIds,
 
         // per aggiungere dei prodotti verrà richiesto lato front end di passare un array di ID dei prodotti
-        // che verranno poi cercati a db successivamente ed aggiunti all'ordine
+        // che verranno poi cercati a db successivamente aggiunti all'ordine
 
         @NotEmpty(message = "Il campo restaurantId non può essere vuoto")
         Long restaurantId,
