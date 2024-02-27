@@ -15,6 +15,7 @@ import ygorgarofalo.Food2YouBe_Server.services.UserService;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
@@ -67,6 +68,12 @@ public class UserController {
     @GetMapping("/payment/get")
     public CreditCard getCreditCard(@AuthenticationPrincipal User user) {
         return userService.getCreditCard(user);
+    }
+
+
+    @GetMapping("/orders/most_used")
+    public Map<String, Long> getCategoriesMostUsedByUser(@AuthenticationPrincipal User user) {
+        return userService.countSummaryCategories(user);
     }
 
 }

@@ -20,6 +20,8 @@ import ygorgarofalo.Food2YouBe_Server.repositories.UserRepo;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -105,5 +107,26 @@ public class UserService {
     public CreditCard getCreditCard(User user) {
         User found = this.findById(user.getId());
         return found.getCreditCard();
+    }
+
+
+    // metodo per cercare le categorie di ristoranti piu usate dal singolo cliente nei suoi ordini
+    //in modo da rendere l'esperienza più personalizzata con apprendimento automatico
+
+    public Map<String, Long> countSummaryCategories(User user) {
+        User found = this.findById(user.getId());
+        List<Order> ordersList = found.getOrderList();
+
+
+        // Estrai le categorie "summary" dei ristoranti presenti negli ordini
+        List<String> summaryCategories = ordersList.stream()
+                .map(order -> order.getRestaurant().getSummary().toString())
+                .collect(Collectors.toList());
+
+        // Conta quante volte ogni categoria "summary" appare nell'elenco estratto
+        Map<String, Long> summaryCategoryCounts = summaryCategories.stream()
+                .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
+
+        return summaryCategoryCounts;
     }
 }
