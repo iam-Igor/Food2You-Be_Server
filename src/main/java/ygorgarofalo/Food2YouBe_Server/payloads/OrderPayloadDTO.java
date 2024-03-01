@@ -21,7 +21,7 @@ public record OrderPayloadDTO(
         Long restaurantId,
 
 
-        @NotEmpty(message = "Il campo userAdrress non può essere vuoto")
+        @NotEmpty(message = "Il campo userAddress non può essere vuoto")
         String userAddress
 
 ) {
