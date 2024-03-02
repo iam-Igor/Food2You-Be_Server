@@ -1,5 +1,6 @@
 package ygorgarofalo.Food2YouBe_Server.payloads;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotEmpty;
 
 import java.util.List;
@@ -22,7 +23,10 @@ public record OrderPayloadDTO(
 
 
         @NotEmpty(message = "Il campo userAddress non può essere vuoto")
-        String userAddress
+        String userAddress,
+
+        @Nullable
+        Boolean isPromoCodePresent
 
 ) {
 }

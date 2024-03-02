@@ -51,5 +51,8 @@ public class Order {
 
     private String userPosition;
 
+    @Column(name = "promo_code_used")
+    private boolean promoCodeUsed;
+
 
 }

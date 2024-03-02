@@ -65,7 +65,14 @@ public class OrderService {
         newOrder.setUser(user);
         newOrder.setProductList(productList);
         newOrder.setRestaurant(restaurantService.findById(payload.restaurantId()));
-        newOrder.setTotalAmount(total);
+        if (payload.isPromoCodePresent()) {
+            double discount = total * 0.2;
+            newOrder.setTotalAmount(total - discount);
+//            newOrder.setPromoCodeUsed(true);
+        } else {
+            newOrder.setTotalAmount(total);
+//            newOrder.setPromoCodeUsed(false);
+        }
         newOrder.setPaymentAccepted(true);
         newOrder.setUserPosition(payload.userAddress());
         return orderRepo.save(newOrder);
