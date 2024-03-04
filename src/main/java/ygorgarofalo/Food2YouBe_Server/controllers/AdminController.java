@@ -68,10 +68,10 @@ public class AdminController {
 
     }
 
-    @PostMapping("/products/new") //test ok
+    @PatchMapping("/restaurant/upload/{id}") // test ok
     @PreAuthorize("hasAuthority('ADMIN')")
-    public Product addNewProductAndAssignToRestaurant(@RequestBody ProductpayloadDTO body) {
-        return productService.saveProduct(body);
+    public String uploadRestaurantImage(@RequestParam("image") MultipartFile file, @PathVariable long id) throws IOException {
+        return restaurantService.uploadRestaurantImage(file, id);
     }
 
     @DeleteMapping("/restaurant/{id}") //test ok
@@ -87,15 +87,14 @@ public class AdminController {
         return productService.uploadProductImage(file, id);
     }
 
-
-    @PatchMapping("/restaurant/upload/{id}") // test ok
+    @PostMapping("/products/new") //test ok
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String uploadRestaurantImage(@RequestParam("image") MultipartFile file, @PathVariable long id) throws IOException {
-        return restaurantService.uploadRestaurantImage(file, id);
+    public Product addNewProductAndAssignToRestaurant(@RequestBody ProductpayloadDTO body) {
+        return productService.saveProduct(body);
     }
 
 
-    @PatchMapping("products/update/{id}")
+    @PatchMapping("/products/update/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public Product updateProduct(@PathVariable long id, @RequestBody ProductUpdateDTO body) {
         return productService.findByIdAndUpdate(id, body);
